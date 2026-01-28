@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexBuy Financial Analysis Dashboard</title>
+    <style>
+        :root {
+            --ford-blue: #003478;
+            --light-gray: #f4f4f4;
+            --dark-gray: #333;
+            --border-color: #ddd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+        }
+
+        header {
+            background-color: var(--ford-blue);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--ford-blue);
+            margin-top: 0;
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.5rem;
+        }
+
+        .graph-container {
+            width: 100%;
+            height: 700px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin: 1.5rem 0;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Assumptions Table Styles */
+        .assumptions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .assumption-item {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+
+        .assumption-label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #777;
+            margin-bottom: 0.3rem;
+        }
+
+        .assumption-value {
+            font-size: 1.2rem;
+            color: var(--ford-blue);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>FlexBuy Product Sensitivity Analysis</h1>
+        <nav>
+            <ul>
+                <li><a href="Flexbuy-66-15-LTV-Analysis.html">About</a></li>
+                <li><a href="Flexbuy-66-18-LTV-Analysis.html">Preparation</a></li>
+                <li><a href="Flexbuy-75-15-LTV-Analysis.html">Vespers</a></li>
+            </ul>
+        </nav>
+	
+</header>
+
+<div class="container">
+    
+    <!-- Analysis Section -->
+    <div class="card">
+        <h2>Equity Sensitivity Surface</h2>
+        <p>This model simulates the "Equity Trap" risk at the Month 37 step-up point. Rotate the graph to explore the impact of Interest Rates (Y-Axis) on Equity (Z-Axis).</p>
+        
+        <div class="graph-container">
+            <iframe src="FlexBuy_Analysis.html"></iframe>
+        </div>
+    </div>
+
+    <!-- Assumptions Section -->
+    <div class="card">
+        <h2>Model Assumptions</h2>
+        <p>The following parameters were used to generate the surfaces above.</p>
+        
+        <div class="assumptions-grid">
+            <div class="assumption-item">
+                <span class="assumption-label">Vehicle MSRP</span>
+                <span class="assumption-value">$35,000</span>
+            </div>
+            <div class="assumption-item">
+                <span class="assumption-label">Loan Term</span>
+                <span class="assumption-value">66 (75) Months</span>
+            </div>
+            <div class="assumption-item">
+                <span class="assumption-label">Flex Period</span>
+                <span class="assumption-value">Months 1 - 36</span>
+            </div>
+            <div class="assumption-item">
+                <span class="assumption-label">Payment Decrement</span>
+                <span class="assumption-value">15% or 18% (15%)</span>
+            </div>
+            <div class="assumption-item">
+                <span class="assumption-label">Annual Depreciation</span>
+                <span class="assumption-value">18% (Exp. Decay)</span>
+            </div>
+            <div class="assumption-item">
+                <span class="assumption-label">Step-Up Month</span>
+                <span class="assumption-value">Month 37</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #666;">
+            <p><strong>Note on Methodology:</strong> Equity is calculated as <em>(Current Vehicle Value - Remaining Loan Balance)</em>. 
+            Depreciation is modeled exponentially, assuming the vehicle loses 18% of its remaining value every 12 months. 
+            The Payment Decrement is applied to the standard 66-month level-payment equivalent.</p>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2026 Ford Credit Dealer Services | Proprietary Internal Use Only
+</footer>
+
+</body>
+</html>
